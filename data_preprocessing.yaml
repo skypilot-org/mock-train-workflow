@@ -1,0 +1,23 @@
+resources:
+  cpus: 1
+
+envs:
+  DATA_BUCKET_URL: s3://sky-demo-data
+
+file_mounts:
+  /data:
+    source: $DATA_BUCKET_URL
+
+setup: |
+  echo "Setting up dependencies for data preprocessing..."
+
+run: |
+  echo "Running data preprocessing..."
+  
+  # Generate few files with random data to simulate data preprocessing
+  for i in {0..9}; do
+      dd if=/dev/urandom of=/data/file_$i bs=1M count=10
+  done
+  
+  echo "Data preprocessing completed, wrote to $DATA_BUCKET_URL"
+

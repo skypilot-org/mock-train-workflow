@@ -1,0 +1,25 @@
+resources:
+  cpus: 1
+  # Add GPUs here
+
+envs:
+  DATA_BUCKET_URL: s3://sky-demo-data
+
+file_mounts:
+  /data:
+    source: $DATA_BUCKET_URL
+
+setup: |
+  echo "Setting up dependencies for eval..."
+
+run: |
+  echo "Evaluating the trained model..."
+  
+  # Run a mock evaluation job that reads the trained model from /data/trained_model.txt
+  cat /data/trained_model.txt
+  # Generate a mock accuracy
+  ACCURACY=$(shuf -i 90-100 -n 1)
+  echo "Metric - accuracy: $ACCURACY%"
+  echo "Evaluation report" > /data/evaluation_report.txt
+  
+  echo "Evaluation completed, report written to $DATA_BUCKET_URL"
