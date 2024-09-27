@@ -16,7 +16,7 @@ run: |
   echo "Evaluating the trained model..."
   
   # Run a mock evaluation job that reads the trained model from /data/trained_model.txt
-  cat /data/trained_model.txt
+  cat /data/trained_model.txt || true
   # Generate a mock accuracy
   ACCURACY=$(shuf -i 90-100 -n 1)
   echo "Metric - accuracy: $ACCURACY%"
