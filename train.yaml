@@ -3,12 +3,14 @@ resources:
   # Add GPUs here
 
 envs:
-  DATA_BUCKET_URL: s3://sky-demo-data
+  DATA_BUCKET_NAME: sky-demo-data-test
+  DATA_BUCKET_STORE_TYPE: s3
   NUM_EPOCHS: 2
 
 file_mounts:
   /data:
-    source: $DATA_BUCKET_URL
+    name: $DATA_BUCKET_NAME
+    store: $DATA_BUCKET_STORE_TYPE
 
 setup: |
   echo "Setting up dependencies for training..."
@@ -27,4 +29,4 @@ run: |
   # Mock checkpointing the trained model to the data bucket
   echo "Trained model" > /data/trained_model.txt
   
-  echo "Training completed, model written to to $DATA_BUCKET_URL"
+  echo "Training completed, model written to to $DATA_BUCKET_NAME"

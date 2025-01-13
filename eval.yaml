@@ -3,11 +3,13 @@ resources:
   # Add GPUs here
 
 envs:
-  DATA_BUCKET_URL: s3://sky-demo-data
+  DATA_BUCKET_NAME: sky-demo-data-test
+  DATA_BUCKET_STORE_TYPE: s3
 
 file_mounts:
   /data:
-    source: $DATA_BUCKET_URL
+    name: $DATA_BUCKET_NAME
+    store: $DATA_BUCKET_STORE_TYPE
 
 setup: |
   echo "Setting up dependencies for eval..."
@@ -22,4 +24,4 @@ run: |
   echo "Metric - accuracy: $ACCURACY%"
   echo "Evaluation report" > /data/evaluation_report.txt
   
-  echo "Evaluation completed, report written to $DATA_BUCKET_URL"
+  echo "Evaluation completed, report written to $DATA_BUCKET_NAME"
