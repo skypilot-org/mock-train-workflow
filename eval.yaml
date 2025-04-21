@@ -3,7 +3,7 @@ resources:
   # Add GPUs here
 
 envs:
-  DATA_BUCKET_NAME: sky-demo-data-test
+  DATA_BUCKET_NAME:
   DATA_BUCKET_STORE_TYPE: s3
 
 file_mounts:
